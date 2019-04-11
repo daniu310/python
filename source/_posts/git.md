@@ -50,7 +50,8 @@ git commit -m "first commit"
 git remote add origin https://github.com/daniu310/python.git
 git push -u  origin master
 ```
-###仓库中已经存在内容
+
+### 仓库中已经存在内容
 ```bash
 git remote add origin https://github.com/daniu310/python.git
 git push -u  origin master
