@@ -50,13 +50,58 @@ git commit -m "first commit"
 git remote add origin https://github.com/daniu310/python.git
 git push -u  origin master
 ```
-
 ### 仓库中已经存在内容
 ```bash
 git remote add origin https://github.com/daniu310/python.git
 git push -u  origin master
 ```
-### 拉取远端代码到本地
+### 克隆远程仓库
+```
+git clone origin master
+```
+### 拉取远端代码到本地进行更新
 ```bash
 git pull origin master
+等同于
+git fetch origin master
 ```
+### 拉取远程分支，与主分支合并
+```
+git pull origin next:master  #取回origin/next分支，再与当前分支合并。实质上，这等同于先做git fetch，再做git merge。
+or
+git pull  origin master #拉取主分支，默认与主分支合并
+```
+### 创建本地分支
+```
+git branch feat
+```
+### 切换本地分支
+```
+git checkout feat
+or
+git checkout -b feat2   #创建分支，并切换分支
+```
+### 删除本地分支
+```
+git branch #查看分支
+git  branch -d  feat#删除分支
+```
+### 合并本地分支
+```
+git merge feat
+```
+### 创建远程分支
+```
+git checkout -b feat2   #创建分支，并切换分支
+git push origin feat2 #创建远程分支
+```
+### 删除远程分支
+```
+git push origin :feat2
+```
+### 查看日志
+```
+git log --oneline
+```
+
+

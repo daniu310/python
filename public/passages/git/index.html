@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Dong Yuanxin">
+  
+  
+  <title>Git基础操作 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Git,Git,">
+  
+
+  
+  <meta name="description" content="董沅鑫的小站">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"Hyq9wkH495DgNHWhDQCOfQSp-gzGzoHsz","appkey":"WaR7nrzhliHj9aVwdQzkdlGd","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-02-10",
+    passwords: ["efe07af7441da2b69c4a41e42e73be4db47f66010a56900788a458354a7373ec", ],
+    is_post: true,
+    lock: false,
+    author: "Dong Yuanxin",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/python/"
+  };
+</script>
+
+  <script src="/python/vendor/sha256.min.js"></script>
+<script src="/python/js/auth.js"></script>
+<script src="/python/js/index.js"></script>
+<script src="/python/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/python/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/python/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/python/css/index.css">
+<link rel="stylesheet" href="/python/styles/components/highlight/highlight.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/python/">GODBMW</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 安静写些东西</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/python/" target="_self">首页</a>
+      
+        <a href="/python/archives/" target="_self">归档</a>
+      
+        <a href="/python/tags/" target="_self">标签</a>
+      
+        <a href="/python/categories/" target="_self">分类</a>
+      
+        <a href="/python/friends/" target="_self">友链</a>
+      
+        <a href="/python/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/daniu310/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/python/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/python/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/python/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/python/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/python/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/python/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-04-11
+    </span>
+    
+      <span>
+        | <a href="/python/categories/Git/"><i class="fa fa-bookmark"></i>Git</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    Git基础操作
+  </h1>
+  
+  <article class="passage-article">
+    <h3 id="错误问题解决"><a href="#错误问题解决" class="headerlink" title="错误问题解决"></a>错误问题解决</h3><ul>
+<li>error: failed to push some refs to<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase origin master</span><br><span class="line">or</span><br><span class="line">git push -u origin master -f</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Git基础操作"><a href="#Git基础操作" class="headerlink" title="Git基础操作"></a>Git基础操作</h2><h3 id="图形化工具"><a href="#图形化工具" class="headerlink" title="图形化工具"></a>图形化工具</h3><ul>
+<li><a href="https://www.sourcetreeapp.com/" target="_blank" rel="noopener">Source Tree</a></li>
+</ul>
+<h3 id="登陆配置"><a href="#登陆配置" class="headerlink" title="登陆配置"></a>登陆配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global  user.name <span class="string">"daniu310"</span></span><br><span class="line">git config --global  user.email <span class="string">"zhang@emaikl.com"</span></span><br></pre></td></tr></table></figure>
+<h3 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<h3 id="显示仓库状态"><a href="#显示仓库状态" class="headerlink" title="显示仓库状态"></a>显示仓库状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<h3 id="提交到暂存器"><a href="#提交到暂存器" class="headerlink" title="提交到暂存器"></a>提交到暂存器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add  .</span><br></pre></td></tr></table></figure>
+<h3 id="暂存器确认"><a href="#暂存器确认" class="headerlink" title="暂存器确认"></a>暂存器确认</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"first commit"</span></span><br></pre></td></tr></table></figure>
+<h3 id="新仓库"><a href="#新仓库" class="headerlink" title="新仓库"></a>新仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"#python"</span>&gt;&gt;README.md</span><br><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">"first commit"</span></span><br><span class="line">git remote add origin https://github.com/daniu310/python.git</span><br><span class="line">git push -u  origin master</span><br></pre></td></tr></table></figure>
+<h3 id="仓库中已经存在内容"><a href="#仓库中已经存在内容" class="headerlink" title="仓库中已经存在内容"></a>仓库中已经存在内容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/daniu310/python.git</span><br><span class="line">git push -u  origin master</span><br></pre></td></tr></table></figure>
+<h3 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone origin master</span><br></pre></td></tr></table></figure>
+<h3 id="拉取远端代码到本地进行更新"><a href="#拉取远端代码到本地进行更新" class="headerlink" title="拉取远端代码到本地进行更新"></a>拉取远端代码到本地进行更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br><span class="line">等同于</span><br><span class="line">git fetch origin master</span><br></pre></td></tr></table></figure>
+<h3 id="拉取远程分支，与主分支合并"><a href="#拉取远程分支，与主分支合并" class="headerlink" title="拉取远程分支，与主分支合并"></a>拉取远程分支，与主分支合并</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull origin next:master  #取回origin/next分支，再与当前分支合并。实质上，这等同于先做git fetch，再做git merge。</span><br><span class="line">or</span><br><span class="line">git pull  origin master #拉取主分支，默认与主分支合并</span><br></pre></td></tr></table></figure>
+<h3 id="创建本地分支"><a href="#创建本地分支" class="headerlink" title="创建本地分支"></a>创建本地分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch feat</span><br></pre></td></tr></table></figure>
+<h3 id="切换本地分支"><a href="#切换本地分支" class="headerlink" title="切换本地分支"></a>切换本地分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout feat</span><br><span class="line">or</span><br><span class="line">git checkout -b feat2   #创建分支，并切换分支</span><br></pre></td></tr></table></figure>
+<h3 id="删除本地分支"><a href="#删除本地分支" class="headerlink" title="删除本地分支"></a>删除本地分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch #查看分支</span><br><span class="line">git  branch -d  feat#删除分支</span><br></pre></td></tr></table></figure>
+<h3 id="合并本地分支"><a href="#合并本地分支" class="headerlink" title="合并本地分支"></a>合并本地分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge feat</span><br></pre></td></tr></table></figure>
+<h3 id="创建远程分支"><a href="#创建远程分支" class="headerlink" title="创建远程分支"></a>创建远程分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feat2   #创建分支，并切换分支</span><br><span class="line">git push origin feat2 #创建远程分支</span><br></pre></td></tr></table></figure>
+<h3 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin :feat2</span><br></pre></td></tr></table></figure>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#错误问题解决"><span class="toc-text">错误问题解决</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Git基础操作"><span class="toc-text">Git基础操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图形化工具"><span class="toc-text">图形化工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登陆配置"><span class="toc-text">登陆配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化仓库"><span class="toc-text">初始化仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示仓库状态"><span class="toc-text">显示仓库状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交到暂存器"><span class="toc-text">提交到暂存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#暂存器确认"><span class="toc-text">暂存器确认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新仓库"><span class="toc-text">新仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#仓库中已经存在内容"><span class="toc-text">仓库中已经存在内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#克隆远程仓库"><span class="toc-text">克隆远程仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拉取远端代码到本地进行更新"><span class="toc-text">拉取远端代码到本地进行更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拉取远程分支，与主分支合并"><span class="toc-text">拉取远程分支，与主分支合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建本地分支"><span class="toc-text">创建本地分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换本地分支"><span class="toc-text">切换本地分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除本地分支"><span class="toc-text">删除本地分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合并本地分支"><span class="toc-text">合并本地分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建远程分支"><span class="toc-text">创建远程分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除远程分支"><span class="toc-text">删除远程分支</span></a></li></ol>
+  </li></div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 董沅鑫</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">http://yoursite.com/passages/git/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/python/tags/Git/"><i class="fa fa-tags"></i>Git</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">博客推荐</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="http://ruanyifeng.com/" target="_blank">阮一峰的个人网站</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">系列教程</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://godbmw.com/categories/webpack4%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" target="_blank">webpack4系列教程</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://godbmw.com/design-patterns/" target="_blank">设计模式手册</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">抓到我</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://juejin.im/user/5b91fcf06fb9a05d3c7fd4a5" target="_blank">掘金</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://segmentfault.com/" target="_blank">思否</a>
+          </span>
+        
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: yuanxin.me@gmail.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+        
+          <div>
+            <img src="/python/images/wechat.png" alt="WeChat">
+            
+              <p>WeChat</p>
+            
+          </div>
+        
+          <div>
+            <img src="/python/images/alipay.png" alt="AliPay">
+            
+              <p>AliPay</p>
+            
+          </div>
+        
+      </div>
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/python/passages/hello-world/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-reward">
+      <i class="fa fa-thumbs-up"></i>
+    </a>
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
