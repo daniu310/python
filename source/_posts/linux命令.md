@@ -1,0 +1,43 @@
+---
+title: linux命令
+date: 2019-04-21 14:44:14
+tags: linux
+categories:
+    - linux命令
+---
+## Linux命令
+### 1.目录命令
+- 查看目录
+  ```bash
+    ls
+    ls  -a   查看隐藏文件
+  ```
+- 创建和删除目录或文件
+```
+touch
+mkdif
+rm
+```
+- 拷贝和移动文件或目录
+```
+cp
+mv
+```
+- 查看文件
+```
+cat
+more
+grep
+```
+- 文件重定向
+```
+echo
+>  和  >>
+管道  |
+
+
+```
+        
+
+
+
