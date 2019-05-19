@@ -166,7 +166,7 @@ a[0:len(a)等价  for  x in range(0,len(a),2): a[x]
 import   moule_name
 import   moule_name  as  别名
 form moudle_name  import  变量或者函数
-*表示导入所有模块   选择__all__=['c','d']
+*表示导入所有模块   选择__all__=['c','d']#在模块中使用
 换行操作：  \或者()
 
 __init__.py:包导入自动执行
@@ -642,7 +642,7 @@ spider.go()
                           # l1 = zip(d.values(),d.keys())
                           # jieguo1 =   sorted(l1)
                           # print(jieguo1)
-                          # l2 = d.items()
+                          l2 = d.items()
                           jieguo2 = sorted(l2,key=lambda x:x[1])
                           print(jieguo2)
               
@@ -670,11 +670,53 @@ spider.go()
           dict_name2 = {x:randint(1,4) for x in list_name}
           dict_name3 = {x:randint(1,4) for x in list_name}
           print(dict_name1.keys()&dict_name2.keys()&dict_name3.keys())#集合交集方法获取公共键
+          方法2：多个字典
+          from random import randint,sample
+          from functools import reduce
+          list_name = sample("abcdefg",randint(3,6))
+  
+          dict_name1 = {x:randint(1,4) for x in list_name}
+          dict_name2 = {x:randint(1,4) for x in list_name}
+          dict_name3 = {x:randint(1,4) for x in list_name}
+          print(dict_name1.keys()&dict_name2.keys()&dict_name3.keys())
+          s = map(dict.keys,[dict_name1,dict_name2,dict_name3])#多个字典放在列表中，取key值
+          print(reduce(lambda a,b:a&b,s))
+    7.如何让字典保持有序：
+  					from collections import OrderedDict
+                      d = OrderedDict()
+                      d["jim"] = (1.2)
+                      d['leo'] = [2,3]
+                      d['bob'] = [3,4]
+                      print(d)
+  8.历史记录功能
+  	用队列：
+      from collections import deque#进行历史记录
+      import pickle #可以把对象存入电脑，也可以把对象，加载到程序中，用这个模块进行历史存储
+      q = deque([],5)#[]初始队列  5：队列元素数量
+      q.append(1)
+      q.append(2)
+      q.append(3)
+      q.append(4)
+      q.append(5)
+      q.append(6)
+  
+      pickle.dump(q,open("history",'wb'))#q对象保存到文件
+      pickle.dump("test",open("history",'wb'))
+      q1 = pickle.load(open("history","rb"))#从文件中提取对象
+  
+      print(list(q1))
+      
   ```
 
   
 
 - 迭代器和生成器
+
+  ```
+  1.如何实现可迭代对象和迭代器对象
+  ```
+
+  
 
 - 字符串处理
 
@@ -687,6 +729,25 @@ spider.go()
 - 多线程和多进程
 
 - 装饰器
+
+### 13.迭代器和生成器
+
+```
+迭代器:可以用 for in 遍历的对象就是可迭代对象，并返回值的对象，可以用iter()，把一个可以遍历的可迭代对象，变成迭代器。可以调用next()调用，
+iter(list/tuple/dict/str/集合等可迭代对象)
+
+a = iter([1,23])
+while True:
+    try:
+        print(next(a))
+    except:
+        print("StopIteration")
+        break
+```
+
+
+
+
 
 
 

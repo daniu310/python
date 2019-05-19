@@ -239,7 +239,7 @@ lsmod | grep bbr
     	- page Ruler测量元件尺寸
     	- wappalyzer查看网站用什么技术
    - [免费bootstartp模板库](https://startbootstrap.com/)
-    
+   
 - [个人支付宝/微信免签支付](https://github.com/yioMe/nodejs_wx_aipay_api)
 
 - [全球技术交流平台](https://www.hostloc.com)
@@ -336,7 +336,47 @@ lsmod | grep bbr
 
 - 安卓地下：[http://www.bigsquirrel.net/android.html](https://www.youtube.com/redirect?q=http%3A%2F%2Fwww.bigsquirrel.net%2Fandroid.html&v=-d50nqZVmkw&event=video_description&redir_token=HHSKNZVMxzDr2tpB7kmD8u4HFtB8MTU1NjU0MTE2NkAxNTU2NDU0NzY2)
   ios地址：http://www.bigsquirrel.net/ios.html
+  
 - 火云 303-roI2c50[火云接码平台](http://download.huoyun888.cn)
+
 - [临时邮箱](https://temp-mail.org/)
+
 - [注册送流量]( https://zcssr.me/)
+
+- 学习
+
+  ```python
+  身份验证;http://www.passportjs.org/
+  换脸：https://www.youtube.com/watch?v=Z4kB4HMdUzQ   face2face
+  代码真香：https://www.youtube.com/channel/UCmlhPmTdqYhRWwWZWSIBwGw
+  内网穿透:https://www.youtube.com/watch?v=VKSKZ0-3oT8
+  Tampermonkey 是一款免费的浏览器扩展和最为流行的用户脚本管理器:        https://www.tampermonkey.net/index.php?ext=dhdg&show=gz80
+   https://greasyfork.org/zh-CN/scripts       
+   Electron:https://www.bilibili.com/video/av29455880
+   vue:https://www.bilibili.com/video/av44699553?from=search&seid=203807794507001699
+       https://oceanwu.ke.qq.com
+   樊登读书会:https://www.youtube.com/channel/UCjN0nagel89AW0Fa3BHMVQA/videos
+   node部署+hexo:https://www.youtube.com/channel/UC-b2nGm0xLzic38Byti0VjA/search?query=git
+          https://www.youtube.com/user/polo13999/search?query=heroku
+ 网页设计初期Adobe Xd ：https://www.youtube.com/watch?v=a_RHKsDKG-Y
+      https://www.youtube.com/watch?v=9MSuy21-AXc
+   IT帮:https://ithelp.ithome.com.tw/articles/10208123
+   浏览器插件开发:https://www.youtube.com/watch?v=y4Ao7giy9vo
+    外掛駭客:https://www.youtube.com/channel/UCL5fgUWLpzSzJcgfFsfM4Qg/videos
+    使用Python来进行屏幕录制以及模拟按键:https://www.youtube.com/watch?v=UcEDflThGDo&list=PLE2dlA6oyYdqUqbQrGXw2jx9ki_OnLqv5
+    python:
+      https://www.youtube.com/watch?v=9Me2aDRm9aE#python机器人
+          https://www.youtube.com/watch?v=wWRYBUzEG6E#Python Flask 網站開發 - Heroku 雲端主機教學 By 彭彭
+   按键精灵:https://www.youtube.com/watch?v=4YuHYAKp_kc
+   arduino源码解析：https://www.youtube.com/user/acen2005/search?query=Arduino%E5%8E%9F%E5%A7%8B%E7%A2%BC%E8%AE%80%E6%9B%B8%E6%9C%83
+      Arduino移植笔记：http://www.stmcu.org.cn/module/forum/thread-599412-1-1.html
+      深入理解Arduino：移植和高级开发：https://item.jd.com/12021388.html
+      用WordPress网站做微信小程序：https://study.163.com/course/introduction.htm?courseId=1005444002#/courseDetail?tab=1
+          男女问题:https://www.youtube.com/channel/UCBwx3O2wPfTcej_QRFyA7ow
+          
+          
+          
+  ```
+  
+  
 
