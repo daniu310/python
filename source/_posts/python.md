@@ -536,12 +536,28 @@ spider.go()
 爬虫:
 	BeautifulSoup爬虫库
 	scrap爬虫框架
+1.zip
+a = [1,2,3]
+b = [4,5,6]
+zip(a,b)#[(1,4),(2,5),(3,6)]
+
+2.浅拷贝:只拷贝父对象
+ a = [1,2]
+ b = a#id相同
+    import copy
+    a = [1,3,4]
+    b = copy.copy(a)#id不同
+    
+3.深拷贝：父子对象同时拷贝
+	a = [1,2,[3,4]]
+     b = copy.copy(a)#a[2]#b[2]id相同
+    b = copy.deepcopy(a)#id都不相同
 
 ```
 ### 13.python实用方法
 - 字典代替switch:
 ```python
-字典代替switch:
+1.字典代替switch:
     day = 1
     def get_s():
         return 's'
@@ -556,11 +572,10 @@ spider.go()
         return 'default'
         
     switch = {0:get_s,1:get_m,2:get_t}
-
     day_name = switch.get(day,get_default)()
     print(day_name)
 
-列表推导式：
+2.列表推导式：
 序列：
 	a = [1,2,3,4,5]
     b = [i*i for i in a]
@@ -570,13 +585,16 @@ spider.go()
      b = [i*i for i in a if i>2]
     结果;
     	[9, 16, 25]
+        
 集合:
      a = {1,2,3,4,5}
      b = {i*i for i in a if i>2}
+    
 字典:
     students = {"xiaole":18,"shigandang":19}
     b = [key for key,value in students.items()]
     print(b)
+    
 
 ```
 - 数据结构
@@ -690,22 +708,23 @@ spider.go()
                       print(d)
   8.历史记录功能
   	用队列：
-      from collections import deque#进行历史记录
+      from collections import deque#进行历史记录双端队列 d.clear()清空队列 q.count(1) 1数值在队列出现的次数，d.extend([3,4,5])从队列右边扩展一个列表的元素 d.pop获取右边一个元素，并在队列中删除，d.remove('c')删除指定元素
       import pickle #可以把对象存入电脑，也可以把对象，加载到程序中，用这个模块进行历史存储
-      q = deque([],5)#[]初始队列  5：队列元素数量
-      q.append(1)
+      q = deque([],5)#[]初始队列  5：队列元素数量，
+      q.append(1)#往右边添加一个元素
       q.append(2)
       q.append(3)
       q.append(4)
       q.append(5)
       q.append(6)
-  
+  	print(q)#[2,3,4,5,6]
       pickle.dump(q,open("history",'wb'))#q对象保存到文件
       pickle.dump("test",open("history",'wb'))
       q1 = pickle.load(open("history","rb"))#从文件中提取对象
   
       print(list(q1))
-      
+    homeassitant:http://blog.oo87.com/python/7378.html
+          https://www.youtube.com/watch?v=yJ47VnAfsSM
   ```
 
   
@@ -728,14 +747,112 @@ spider.go()
 
 - 多线程和多进程
 
+  ```python
+  1.多线程：
+  import threading
+  def thread_job():
+      print('This is an Threading: %s' % threading.current_thread())
+  
+  added_thread = threading.Thread(target=thread_job)
+  added_thread.start()
+  
+  print(threading.active_count())#线程数
+  print(threading.enumerate())#列举所有线程名称
+  print(threading.current_thread())#当前线程
+  
+  threading中join应用:
+  import threading
+  import time
+  def thread_job():
+      for _ in range(10):
+          time.sleep(0.1)
+      print('This is an Threading: %s' % threading.current_thread())
+  
+  added_thread = threading.Thread(target=thread_job,name="T1")#线程名字T1
+  added_thread.start()
+  added_thread.jion()#等待当前子线程结束
+  print(threading.current_thread())
+  多线程没有返回值：把运算结果放到Queue队列中
+  from queue import Queue
+  import threading
+  def thread_job(l,q):
+      for i in range(len(l)):
+          l[i] = l[i]*2
+      q.put(l)
+      
+      
+  q = Queue()#队列
+  threads = []
+  data = [[1,2],[2,3],[6,7]]
+  for i in range(len(data)):
+      t = threading.Thread(target=thread_job,args=(data[i],q))
+      t.start()
+      threads.append(t)
+  for thread in threads:
+      thread.join()
+  results = []
+  for _ in range(len(data)):
+      results.append(q.get())
+  print(results)
+  
+  注意：
+  基本方法：
+  　　 Queue.Queue(maxsize=0)   FIFO先进先出， 如果maxsize小于1就表示队列长度无限
+         Queue.LifoQueue(maxsize=0)   LIFO，后进先出， 如果maxsize小于1就表示队列长度无限
+         Queue.qsize()   返回队列的大小 
+         Queue.empty()   如果队列为空，返回True,反之False 
+         Queue.full()   如果队列满了，返回True,反之False
+         Queue.get([block[, timeout]])   读队列，timeout等待时间 
+         Queue.put(item, [block[, timeout]])   写队列，timeout等待时间 
+         Queue.queue.clear()   清空队列
+  线程锁;共享内存加工处理才会用到
+  def job1():
+      global A,lock
+      lock.acquire()#获得锁
+      A +=1
+      print("A")
+      lock.release()#释放锁
+  def job2():
+      global A,lock
+      lock.acquire()#获得锁
+      A +=10
+      lock.release()#释放锁
+      print("B")
+   
+  lock = threading.Lock()
+  t1 = threading.Thread(target=job1)
+  t2 = threading.Thread(target=job2)
+  
+  2.多进程
+  
+  
+  
+  ```
+
+  
+
+- Asyncio异步
+
+  ````python
+import time
+import asyncio
+async def job():
+	print("start job ",t)
+	await asynico.sleep(10)
+  ````
+
+  
+
 - 装饰器
 
 ### 13.迭代器和生成器
 
 ```
-迭代器:可以用 for in 遍历的对象就是可迭代对象，并返回值的对象，可以用iter()，把一个可以遍历的可迭代对象，变成迭代器。可以调用next()调用，
-iter(list/tuple/dict/str/集合等可迭代对象)
-
+迭代器:
+iter(list/tuple/dict/str/文件对象集合等可迭代对象)很多容器都是可迭代对象，在iter()之后，返回可迭代器：包含next()
+from collections.abc import Iterable,Iterator#可迭代对象，迭代器
+print(isinstance(a,Iterable))#True  #迭代器也是可迭代对象
+print(isinstance(a,Iterator))#True  程序中使用这个
 a = iter([1,23])
 while True:
     try:
@@ -743,6 +860,15 @@ while True:
     except:
         print("StopIteration")
         break
+生成器：避免空间浪费
+生成器是一种特殊的迭代器，生成器自动实现了“迭代器协议”（即__iter__和next方法），不需要再手动实现两方法。只需要一个yiled关键字
+方式1： g = (x for x in range(1,100)) #next(g)
+方式2：
+生成器;
+def sequare(start,end):
+    for x in range(start,end):
+        yield x*x
+g = sequare(1,29)
 ```
 
 
